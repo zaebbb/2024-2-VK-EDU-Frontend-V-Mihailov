@@ -29,9 +29,9 @@ export default function nonUniqueElements(data = []) {
 
   data.forEach((item) => {
     if (data.indexOf(item) !== data.lastIndexOf(item)) {
-      result.push(item)
+      result.push(item);
     }
   })
 
-  return result
+  return result;
 }

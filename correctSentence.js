@@ -19,8 +19,8 @@ correctSentence("Greetings, friends.") == "Greetings, friends."
 
 export default function correctSentence(text) {
   const firstSymbol = text[0].toUpperCase();
-  const content = text.slice(1)
-  const dotEnd = content[content.length - 1] === '.' ? '' : '.'
+  const content = text.slice(1);
+  const dotEnd = content[content.length - 1] === '.' ? '' : '.';
 
   return `${firstSymbol}${content}${dotEnd}`;
 }

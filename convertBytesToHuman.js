@@ -12,13 +12,18 @@
  * и класса (например, отрицательные числа)
  */
 
-const KB = 1024
-const MB = KB * 1024
-const GB = MB * 1024
+const BYTES_NUM = 1024;
+const BYTE_UNITS = [
+  'B',
+  'KB',
+  'MB',
+  'GB'
+];
 
-const formatNumber = (num) => num % 1 === 0 ? num : num.toFixed(2)
+const formatNumber = (num) => num % 1 === 0 ? num : num.toFixed(2);
+const formatByteToHuman = (bytes, byteUnit) => `${formatNumber(bytes)} ${byteUnit}`;
 
-export default function convertBytesToHuman(bytes) {
+export default function convertBytesToHuman(bytes, currentByteUnit = BYTE_UNITS[0]) {
   if (
     typeof bytes !== 'number' || 
     bytes < 0 ||
@@ -29,26 +34,17 @@ export default function convertBytesToHuman(bytes) {
     return false;
   }
 
-  if (bytes < KB) {
-    return `${bytes} B`;
+  if (bytes < BYTES_NUM) {
+    return formatByteToHuman(bytes, currentByteUnit);
   }
 
-  if (bytes >= KB && bytes < MB) {
-    const bytesToKB = bytes / KB;
-    return `${formatNumber(bytesToKB)} KB`
+  const divideByte = bytes / BYTES_NUM;
+  const indexCurrentByteUnit = BYTE_UNITS.indexOf(currentByteUnit);
+  const nextByteUnit = BYTE_UNITS[indexCurrentByteUnit + 1];
+
+  if (nextByteUnit) {
+    return convertBytesToHuman(divideByte, nextByteUnit);
   }
 
-  if (bytes >= MB && bytes < GB) {
-    const bytesToMB = bytes / MB;
-    return `${formatNumber(bytesToMB)} MB`;
-  }
-
-  const bytesToGB = bytes / GB;
-  return `${formatNumber(bytesToGB)} GB`
-}
-
-export {
-  KB,
-  MB,
-  GB,
+  return formatByteToHuman(bytes, currentByteUnit);
 }
