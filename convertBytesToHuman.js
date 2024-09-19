@@ -34,16 +34,10 @@ export default function convertBytesToHuman(bytes, currentByteUnit = BYTE_UNITS[
     return false;
   }
 
-  if (bytes < BYTES_NUM) {
-    return formatByteToHuman(bytes, currentByteUnit);
-  }
-
-  const divideByte = bytes / BYTES_NUM;
-  const indexCurrentByteUnit = BYTE_UNITS.indexOf(currentByteUnit);
-  const nextByteUnit = BYTE_UNITS[indexCurrentByteUnit + 1];
-
-  if (nextByteUnit) {
-    return convertBytesToHuman(divideByte, nextByteUnit);
+  while (bytes >= BYTES_NUM) {
+    const indexCurrentByteUnit = BYTE_UNITS.indexOf(currentByteUnit);
+    currentByteUnit = BYTE_UNITS[indexCurrentByteUnit + 1];
+    bytes /= BYTES_NUM;
   }
 
   return formatByteToHuman(bytes, currentByteUnit);
