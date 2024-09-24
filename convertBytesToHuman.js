@@ -28,14 +28,13 @@ export default function convertBytesToHuman(bytes) {
     return false;
   }
 
-  let currentByteUnit = BYTE_UNITS[0];
+  let byteUnitIndex = 0;
 
   while (bytes >= BYTES_NUM) {
-    const indexCurrentByteUnit = BYTE_UNITS.indexOf(currentByteUnit);
-    currentByteUnit = BYTE_UNITS[indexCurrentByteUnit + 1];
+    byteUnitIndex++
     bytes /= BYTES_NUM;
   }
 
   const formatNumber = bytes % 1 === 0 ? bytes : bytes.toFixed(2);
-  return `${formatNumber} ${currentByteUnit}`;
+  return `${formatNumber} ${BYTE_UNITS[byteUnitIndex]}`;
 }
