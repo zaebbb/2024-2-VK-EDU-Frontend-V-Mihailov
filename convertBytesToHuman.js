@@ -17,22 +17,18 @@ const BYTE_UNITS = [
   'B',
   'KB',
   'MB',
-  'GB'
+  'GB',
 ];
 
-const formatNumber = (num) => num % 1 === 0 ? num : num.toFixed(2);
-const formatByteToHuman = (bytes, byteUnit) => `${formatNumber(bytes)} ${byteUnit}`;
-
-export default function convertBytesToHuman(bytes, currentByteUnit = BYTE_UNITS[0]) {
+export default function convertBytesToHuman(bytes) {
   if (
-    typeof bytes !== 'number' || 
-    bytes < 0 ||
-    Number.isNaN(bytes) || 
-    bytes === Infinity ||
-    bytes === -Infinity
+    !Number.isFinite(bytes) ||
+    bytes < 0
   ) {
     return false;
   }
+
+  let currentByteUnit = BYTE_UNITS[0];
 
   while (bytes >= BYTES_NUM) {
     const indexCurrentByteUnit = BYTE_UNITS.indexOf(currentByteUnit);
@@ -40,5 +36,6 @@ export default function convertBytesToHuman(bytes, currentByteUnit = BYTE_UNITS[
     bytes /= BYTES_NUM;
   }
 
-  return formatByteToHuman(bytes, currentByteUnit);
+  const formatNumber = bytes % 1 === 0 ? bytes : bytes.toFixed(2);
+  return `${formatNumber} ${currentByteUnit}`;
 }
