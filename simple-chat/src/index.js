@@ -1,4 +1,5 @@
 import './index.css';
+import Avatar from './images/user.png';
 
 const LOCAL_STORAGE_KEY = 'messages';
 const USER = 'Владимир Михайлов';
@@ -7,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('form');
   const input = form.querySelector('.form__input');
   const messagesContainer = document.querySelector('.chat-messages');
+  
+  document.getElementById('user-avatar').setAttribute('src', Avatar);
 
   form.addEventListener('submit', handleSubmit.bind(this));
   form.addEventListener('keypress', handleKeyPress.bind(this));
@@ -62,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const messagesLocalStorage = localStorage.getItem(LOCAL_STORAGE_KEY);
     const messages = messagesLocalStorage ? JSON.parse(messagesLocalStorage) : [];
 
-    messages.forEach(messageHtml)
+    messages.forEach(messageHtml);
   }
 
   function messageHtml (messageInfo) {

@@ -55,17 +55,13 @@ module.exports = {
         ],
       },
       {
-        test: /\.png$/,
+        test: /\.(png|jpe?g|gif|svg)$/i,
         include: SRC_PATH,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[hash].[ext]',
-              outputPath: 'images/',
-            },
-          },
-        ],
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'images/',
+        },
       },
     ],
   },
@@ -75,7 +71,7 @@ module.exports = {
     }),
     new HTMLWebpackPlugin({
       filename: 'index.html',
-      template: './index.html'
+      template: './index.html',
     })
   ]
 };
