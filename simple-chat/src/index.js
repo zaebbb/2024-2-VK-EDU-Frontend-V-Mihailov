@@ -1,15 +1,21 @@
 import './index.css';
-import Avatar from './images/user.png';
+import './styles/header.css';
+import './styles/chat-form.css';
+import './styles/chat.css';
+import './styles/add-message.css';
+import './styles/chats-list.css';
 
-const LOCAL_STORAGE_KEY = 'messages';
-const USER = 'Владимир Михайлов';
+import { loadUserAvatar } from './components/avatar';
+import { loadMessages } from './components/loadMessages';
+import { addMessage } from './components/addMessage';
+import { getCurrentTime } from './components/utils';
+import { messageHtml } from './components/messageHtml';
+import { USER } from './components/constants';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('form');
   const input = form.querySelector('.form__input');
   const messagesContainer = document.querySelector('.chat-messages');
-  
-  document.getElementById('user-avatar').setAttribute('src', Avatar);
 
   form.addEventListener('submit', handleSubmit.bind(this));
   form.addEventListener('keypress', handleKeyPress.bind(this));
@@ -29,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     addMessage(messageInfo);
-    messageHtml(messageInfo)
+    messageHtml(messageInfo, messagesContainer)
 
     input.value = '';
   }
@@ -40,57 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function addMessage (messageInfo) {
-    if (!localStorage.getItem(LOCAL_STORAGE_KEY)) {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify([]));
-    }
-
-    const messages = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-
-    messages.push(messageInfo);
-
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(messages));
-  }
-
-  function getCurrentTime () {
-    const date = new Date();
-
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-
-    return `${hours}:${minutes}`;
-  }
-
-  function loadMessages () {
-    const messagesLocalStorage = localStorage.getItem(LOCAL_STORAGE_KEY);
-    const messages = messagesLocalStorage ? JSON.parse(messagesLocalStorage) : [];
-
-    messages.forEach(messageHtml);
-  }
-
-  function messageTemplate (messageInfo) {
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message');
-    
-    messageElement.innerHTML = `
-      <p class="message__content ${messageInfo.user !== USER ? 'message--participant' : ''}">
-        ${messageInfo.message}
-      </p>
-      <span class="message__time">${messageInfo.time}</span>
-    `;
-    
-    return messageElement;
-  }
-
-  function messageHtml (messageInfo) {
-    const messageElement = messageTemplate(messageInfo)
-    messagesContainer.appendChild(messageElement);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  }
-
   window.onload = function() {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   };
 
-  loadMessages();
+  loadMessages(messagesContainer);
+  loadUserAvatar();
 })
