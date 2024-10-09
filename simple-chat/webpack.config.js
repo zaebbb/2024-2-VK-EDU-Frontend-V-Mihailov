@@ -43,7 +43,7 @@ module.exports = {
         ],
       },
       {
-        test: /index\.css$/,
+        test: /\.css$/,
         include: SRC_PATH,
         use: [
           {
@@ -72,6 +72,10 @@ module.exports = {
     new HTMLWebpackPlugin({
       filename: 'index.html',
       template: './index.html',
-    })
+    }),
+    new HTMLWebpackPlugin({
+      filename: 'chat.html',
+      template: './chat.html',
+    }),
   ]
 };

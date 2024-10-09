@@ -8,77 +8,502 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   </head>
   <body>
-    <main class="chat">
-      <div class="chat-user">
-        <div class="user-info">
-          <button class="user-info__button-back">
+    <main class="chat chat-list">
+      <div class="header">
+        <div class="header-info">
+          <button class="header__button">
             <span class="material-symbols-outlined">
-              arrow_back_ios
+              menu
             </span>
           </button>
   
-          <div class="user-info-profile">
-            <img 
-              src="./images/user.png" 
-              alt="Владимир Михайлов" 
-              class="profile__avatar"
-              id="user-avatar"
-            >
-  
-            <div class="profile__content">
-              <h3 class="profile__name">
-                Владимир Михайлов
-              </h3>
-              <span class="profile__date">
-                был в сети в 11.40
-              </span>
-            </div>
+          <div class="header-profile">
+            <p class="header__title">
+              Messenger
+            </p>
           </div>
         </div>
         
-        <div class="user-actions">
-          <button class="user-actions__search">
+        <div class="header-actions">
+          <button class="header-actions__search">
             <span class="material-symbols-outlined">
               search
             </span>
           </button>
-
-          <button class="user-actions__menu">
-            <span class="material-symbols-outlined">
-              more_vert
-            </span>
-          </button>
         </div>
       </div>
 
-      <div class="chat-messages">
-        <div class="message">
-          <p class="message__content">
-            Сообщение
-          </p>
-          <span class="message__time">
-            11:08
-          </span>
-        </div>
+      <div class="chats-list">
+        <!-- Chat new messages -->
+        <a href="./chat.html" class="chat-user">
+          <img 
+            src="./images/user.png" 
+            alt="Михайлов Владимир"
+            class="chat-user__avatar"
+          >
 
-        <div class="message message--participant">
-          <p class="message__content">
-            Сообщение
-          </p>
-          <span class="message__time">
-            11:08
-          </span>
-        </div>
+          <div class="chat-user-info">
+            <div class="chat-user-message">
+              <h3 class="user-message__username">
+                Михайлов Владимир
+              </h3>
+
+              <p class="user-message__text">
+                Ты куда пропал?
+              </p>
+            </div>
+
+            <div class="chat-user-properties">
+              <span class="user-properties__time">
+                15:52
+              </span>
+
+              <span class="user-properties__status user-properties__status--new-message">
+                99
+              </span>
+            </div>
+          </div>
+        </a>
+        
+        <!-- Chat read -->
+        <a href="./chat.html" class="chat-user">
+          <img 
+            src="./images/user.png" 
+            alt="Михайлов Владимир"
+            class="chat-user__avatar"
+          >
+
+          <div class="chat-user-info">
+            <div class="chat-user-message">
+              <h3 class="user-message__username">
+                Тестов Тест
+              </h3>
+
+              <p class="user-message__text">
+                Тестовое сообщение?
+              </p>
+            </div>
+
+            <div class="chat-user-properties">
+              <span class="user-properties__time">
+                15:52
+              </span>
+
+              <span class="material-symbols-outlined user-properties__status user-properties__status--read">
+                done_all
+              </span>
+            </div>
+          </div>
+        </a>
+        
+        <!-- Chat read -->
+        <a href="./chat.html" class="chat-user">
+          <img 
+            src="./images/user.png" 
+            alt="Михайлов Владимир"
+            class="chat-user__avatar"
+          >
+
+          <div class="chat-user-info">
+            <div class="chat-user-message">
+              <h3 class="user-message__username">
+                Тестов Тест
+              </h3>
+
+              <p class="user-message__text">
+                Непрочитанное сообщение!
+              </p>
+            </div>
+
+            <div class="chat-user-properties">
+              <span class="user-properties__time">
+                15:52
+              </span>
+
+              <span class="material-symbols-outlined user-properties__status user-properties__status--read">
+                done_all
+              </span>
+            </div>
+          </div>
+        </a>
+        
+        <!-- Chat not read -->
+        <a href="./chat.html" class="chat-user">
+          <img 
+            src="./images/user.png" 
+            alt="Михайлов Владимир"
+            class="chat-user__avatar"
+          >
+
+          <div class="chat-user-info">
+            <div class="chat-user-message">
+              <h3 class="user-message__username">
+                Серега с работы
+              </h3>
+
+              <p class="user-message__text">
+                Прочитанное сообщение.
+              </p>
+            </div>
+
+            <div class="chat-user-properties">
+              <span class="user-properties__time">
+                15:52
+              </span>
+
+              <span 
+                class="material-symbols-outlined user-properties__status user-properties__status--not-read"
+              >
+                check
+              </span>
+            </div>
+          </div>
+        </a>
+        
+        <!-- Chat mention -->
+        <a href="./chat.html" class="chat-user">
+          <img 
+            src="./images/user.png" 
+            alt="Михайлов Владимир"
+            class="chat-user__avatar"
+          >
+
+          <div class="chat-user-info">
+            <div class="chat-user-message">
+              <h3 class="user-message__username">
+                Серега с работы
+              </h3>
+
+              <p class="user-message__text">
+                Прочитанное сообщение.
+              </p>
+            </div>
+
+            <div class="chat-user-properties">
+              <span class="user-properties__time">
+                15:52
+              </span>
+
+              <div class="user-properties__status user-properties__status--mention">
+                <span class="material-symbols-outlined">
+                  alternate_email
+                </span>
+
+                <span>
+                  99
+                </span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Chat file send -->
+        <a href="./chat.html" class="chat-user">
+          <img 
+            src="./images/user.png" 
+            alt="Михайлов Владимир"
+            class="chat-user__avatar"
+          >
+
+          <div class="chat-user-info">
+            <div class="chat-user-message">
+              <h3 class="user-message__username">
+                Серега с работы
+              </h3>
+
+              <p class="user-message__text user-message__text--file">
+                <img
+                  alt="Прикрепленное сообщение"
+                  src="./images//user.png"
+                  class="user-message__file"
+                >
+                Прочитанное сообщение.
+              </p>
+            </div>
+
+            <div class="chat-user-properties">
+              <span class="user-properties__time">
+                15:52
+              </span>
+
+              <span 
+                class="material-symbols-outlined user-properties__status user-properties__status--not-read"
+              >
+                check
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Chat long message -->
+        <a href="./chat.html" class="chat-user">
+          <img 
+            src="./images/user.png" 
+            alt="Михайлов Владимир"
+            class="chat-user__avatar"
+          >
+
+          <div class="chat-user-info">
+            <div class="chat-user-message">
+              <h3 class="user-message__username">
+                Михайлов Владимир
+              </h3>
+
+              <p class="user-message__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, in iusto enim ut amet qui. Maiores tempore beatae culpa dolores fuga qui amet aliquid asperiores, nostrum magnam quia nemo nam.
+              </p>
+            </div>
+
+            <div class="chat-user-properties">
+              <span class="user-properties__time">
+                15:52
+              </span>
+
+              <span class="user-properties__status user-properties__status--new-message">
+                99
+              </span>
+            </div>
+          </div>
+        </a>
+        
+        <!-- Chat new messages -->
+        <a href="./chat.html" class="chat-user">
+          <img 
+            src="./images/user.png" 
+            alt="Михайлов Владимир"
+            class="chat-user__avatar"
+          >
+
+          <div class="chat-user-info">
+            <div class="chat-user-message">
+              <h3 class="user-message__username">
+                Михайлов Владимир
+              </h3>
+
+              <p class="user-message__text">
+                Ты куда пропал?
+              </p>
+            </div>
+
+            <div class="chat-user-properties">
+              <span class="user-properties__time">
+                15:52
+              </span>
+
+              <span class="user-properties__status user-properties__status--new-message">
+                99
+              </span>
+            </div>
+          </div>
+        </a>
+        
+        <!-- Chat read -->
+        <a href="./chat.html" class="chat-user">
+          <img 
+            src="./images/user.png" 
+            alt="Михайлов Владимир"
+            class="chat-user__avatar"
+          >
+
+          <div class="chat-user-info">
+            <div class="chat-user-message">
+              <h3 class="user-message__username">
+                Тестов Тест
+              </h3>
+
+              <p class="user-message__text">
+                Тестовое сообщение?
+              </p>
+            </div>
+
+            <div class="chat-user-properties">
+              <span class="user-properties__time">
+                15:52
+              </span>
+
+              <span class="material-symbols-outlined user-properties__status user-properties__status--read">
+                done_all
+              </span>
+            </div>
+          </div>
+        </a>
+        
+        <!-- Chat read -->
+        <a href="./chat.html" class="chat-user">
+          <img 
+            src="./images/user.png" 
+            alt="Михайлов Владимир"
+            class="chat-user__avatar"
+          >
+
+          <div class="chat-user-info">
+            <div class="chat-user-message">
+              <h3 class="user-message__username">
+                Тестов Тест
+              </h3>
+
+              <p class="user-message__text">
+                Непрочитанное сообщение!
+              </p>
+            </div>
+
+            <div class="chat-user-properties">
+              <span class="user-properties__time">
+                15:52
+              </span>
+
+              <span class="material-symbols-outlined user-properties__status user-properties__status--read">
+                done_all
+              </span>
+            </div>
+          </div>
+        </a>
+        
+        <!-- Chat not read -->
+        <a href="./chat.html" class="chat-user">
+          <img 
+            src="./images/user.png" 
+            alt="Михайлов Владимир"
+            class="chat-user__avatar"
+          >
+
+          <div class="chat-user-info">
+            <div class="chat-user-message">
+              <h3 class="user-message__username">
+                Серега с работы
+              </h3>
+
+              <p class="user-message__text">
+                Прочитанное сообщение.
+              </p>
+            </div>
+
+            <div class="chat-user-properties">
+              <span class="user-properties__time">
+                15:52
+              </span>
+
+              <span 
+                class="material-symbols-outlined user-properties__status user-properties__status--not-read"
+              >
+                check
+              </span>
+            </div>
+          </div>
+        </a>
+        
+        <!-- Chat mention -->
+        <a href="./chat.html" class="chat-user">
+          <img 
+            src="./images/user.png" 
+            alt="Михайлов Владимир"
+            class="chat-user__avatar"
+          >
+
+          <div class="chat-user-info">
+            <div class="chat-user-message">
+              <h3 class="user-message__username">
+                Серега с работы
+              </h3>
+
+              <p class="user-message__text">
+                Прочитанное сообщение.
+              </p>
+            </div>
+
+            <div class="chat-user-properties">
+              <span class="user-properties__time">
+                15:52
+              </span>
+
+              <div class="user-properties__status user-properties__status--mention">
+                <span class="material-symbols-outlined">
+                  alternate_email
+                </span>
+
+                <span>
+                  99
+                </span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Chat file send -->
+        <a href="./chat.html" class="chat-user">
+          <img 
+            src="./images/user.png" 
+            alt="Михайлов Владимир"
+            class="chat-user__avatar"
+          >
+
+          <div class="chat-user-info">
+            <div class="chat-user-message">
+              <h3 class="user-message__username">
+                Серега с работы
+              </h3>
+
+              <p class="user-message__text user-message__text--file">
+                <img
+                  alt="Прикрепленное сообщение"
+                  src="./images//user.png"
+                  class="user-message__file"
+                >
+                Прочитанное сообщение.
+              </p>
+            </div>
+
+            <div class="chat-user-properties">
+              <span class="user-properties__time">
+                15:52
+              </span>
+
+              <span 
+                class="material-symbols-outlined user-properties__status user-properties__status--not-read"
+              >
+                check
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Chat long message -->
+        <a href="./chat.html" class="chat-user">
+          <img 
+            src="./images/user.png" 
+            alt="Михайлов Владимир"
+            class="chat-user__avatar"
+          >
+
+          <div class="chat-user-info">
+            <div class="chat-user-message">
+              <h3 class="user-message__username">
+                Михайлов Владимир
+              </h3>
+
+              <p class="user-message__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, in iusto enim ut amet qui. Maiores tempore beatae culpa dolores fuga qui amet aliquid asperiores, nostrum magnam quia nemo nam.
+              </p>
+            </div>
+
+            <div class="chat-user-properties">
+              <span class="user-properties__time">
+                15:52
+              </span>
+
+              <span class="user-properties__status user-properties__status--new-message">
+                99
+              </span>
+            </div>
+          </div>
+        </a>
       </div>
 
-      <form class="chat-form" action="/">
-        <input 
-          class="form__input" 
-          name="message-text" 
-          placeholder="Написать сообщение..." 
-          type="text"
-        >
-      </form>
+      <div class="add-message">
+        <span class="material-symbols-outlined">
+          add
+        </span>
+      </div>
     </main>
   </body>
 </html>

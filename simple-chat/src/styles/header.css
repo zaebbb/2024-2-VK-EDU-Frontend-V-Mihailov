@@ -1,0 +1,77 @@
+.header {
+  padding: 10px 20px;
+
+  min-height: 70px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #212121;
+}
+
+.header__title {
+  font-size: 24px;
+  color: #fff;
+}
+
+.header__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #a2acb4;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: 0.3s color;
+}
+
+.header__button:hover {
+  color: #fff;
+}
+
+.profile__avatar {
+  width: 50px;
+}
+
+.header-profile,
+.header-info {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.header-info {
+  gap: 25px;
+}
+
+.profile__name {
+  color: #fff;
+  font-size: 16px;
+}
+
+.profile__date {
+  color: #a2acb4;
+  font-size: 12px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-actions__search,
+.header-actions__menu {
+  color: #a2acb4;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: 0.3s color;
+}
+
+.header-actions__search:hover,
+.header-actions__menu:hover {
+  color: #fff;
+}

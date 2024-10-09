@@ -1,0 +1,134 @@
+.chat-user {
+  padding: 10px 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  transition: background 0.2s;
+}
+
+.chat-user:hover {
+  background: #2e2e2e;
+}
+
+.chat-user__avatar {
+  width: 60px;
+  height: 60px;
+}
+
+.chat-user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  width: 100%;
+  
+  color: #fff;
+}
+
+.chat-user-message {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.user-message__username {
+  color: #fff;
+}
+
+.user-message__text {
+  display: block;
+
+  width: 100%;
+
+  font-size: 14px;
+  color: #a2acb4; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-user-properties {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-end;
+}
+
+.user-properties__time {
+  color: #a2acb4;
+  font-size: 14px;
+}
+
+.user-properties__status {
+  font-size: 14px;
+  color: #a2acb4;
+}
+
+.user-properties__status--read {
+  color: #1A66FF;
+}
+
+.user-properties__status--new-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  background: #1A66FF;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.user-properties__status--mention {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  width: 60px;
+  height: 30px;
+
+  background: #1A66FF;
+  color: #fff;
+  border-radius: 30px;
+}
+
+.user-message__text--file {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.user-message__file {
+  width: 20px;
+}
+
+.user-message__text {
+  max-width: 800px;
+}
+
+@media (max-width: 1000px) {
+  .user-message__text {
+    max-width: 600px;
+  } 
+}
+
+@media (max-width: 800px) {
+  .user-message__text {
+    max-width: 400px;
+  } 
+}
+
+@media (max-width: 600px) {
+  .user-message__text {
+    max-width: 200px;
+  } 
+}
