@@ -27,6 +27,7 @@
   transition: 0.3s color;
 }
 
+.header__button:active,
 .header__button:hover {
   color: #fff;
 }
@@ -71,6 +72,8 @@
   transition: 0.3s color;
 }
 
+.header-actions__search:active,
+.header-actions__menu:active,
 .header-actions__search:hover,
 .header-actions__menu:hover {
   color: #fff;

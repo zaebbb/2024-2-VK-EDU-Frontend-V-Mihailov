@@ -3,6 +3,7 @@
 
   flex-grow: 1;
   overflow-y: auto;
+  overflow-x: hidden;
 
   display: flex;
   flex-direction: column;
@@ -64,4 +65,26 @@
 
 .message--participant .message__time {
   text-align: left;
+}
+
+.message--user,
+.message--participant {
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  visibility: hidden;
+}
+
+.message--user {
+  transform: translateX(100%) scale(0.5);
+}
+
+.message--participant {
+  transform: translateX(-100%) scale(0.5);
+}
+
+.message--user.show,
+.message--participant.show {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  visibility: visible;
 }
