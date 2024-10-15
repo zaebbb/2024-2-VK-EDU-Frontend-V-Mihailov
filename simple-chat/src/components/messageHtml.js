@@ -2,10 +2,10 @@ import { USER } from './constants'
 
 const messageTemplate = (messageInfo) => {
   const messageElement = document.createElement('div');
-  messageElement.classList.add('message');
+  messageElement.className = `message ${messageInfo.isUser ? 'message--participant' : ''}`;
   
   messageElement.innerHTML = `
-    <p class="message__content ${messageInfo.user !== USER ? 'message--participant' : ''}">
+    <p class="message__content">
       ${messageInfo.message}
     </p>
     <span class="message__time">${messageInfo.time}</span>
