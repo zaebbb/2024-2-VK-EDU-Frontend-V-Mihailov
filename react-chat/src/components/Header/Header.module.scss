@@ -1,0 +1,80 @@
+.header {
+  padding: 10px 20px;
+
+  min-height: 70px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #212121;
+
+  &-profile {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+  &-info {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #a2acb4;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: 0.3s color;
+
+    &:active,
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  &__title {
+    font-size: 24px;
+    color: #fff;
+  }
+
+  &-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    &__button {
+      color: #a2acb4;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      transition: 0.3s color;
+
+      &:active,
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.profile {
+  &__avatar {
+    width: 50px;
+  }
+
+  &__name {
+    color: #fff;
+    font-size: 16px;
+  }
+
+  &__date {
+    color: #a2acb4;
+    font-size: 12px;
+  }
+}

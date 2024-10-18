@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat'), url(./assets/fonts/Montserrat-VariableFont_wght.ttf) format('ttf');
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  
+  font-family: Montserrat, Arial, sans-serif;
+}
+
+body {
+  background-color: #0D0D0D;
+  font-size: 15px;
+}
+
+.chat-page {
+  height: 100vh;
+  overflow: hidden;
+}
