@@ -10,46 +10,55 @@ import { loadMessages } from './components/loadMessages';
 import { addMessage } from './components/addMessage';
 import { getCurrentTime } from './components/utils';
 import { messageHtml } from './components/messageHtml';
-import { USER } from './components/constants';
+import { loadChats } from './components/loadChats';
+import { saveMockData } from './components/saveMockData';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('form');
-  const input = form.querySelector('.form__input');
   const messagesContainer = document.querySelector('.chat-messages');
 
-  form.addEventListener('submit', handleSubmit.bind(this));
-  form.addEventListener('keypress', handleKeyPress.bind(this));
+  if (form && messagesContainer) {
+    const input = form.querySelector('.form__input');
+    const url = new URLSearchParams(window.location.search);
+    const id = url.get('id')
 
-  function handleSubmit (event) {
-    event.preventDefault();
-    const value = input.value;
+    form.addEventListener('submit', handleSubmit.bind(this));
+    form.addEventListener('keypress', handleKeyPress.bind(this));
 
-    if (!value) {
-      return;
+    function handleSubmit (event) {
+      event.preventDefault();
+      const value = input.value;
+
+      if (!value) {
+        return;
+      }
+
+      const messageInfo = {
+        time: getCurrentTime(),
+        isUser: false,
+        message: value,
+      };
+
+      addMessage(messageInfo, id);
+      messageHtml(messageInfo, messagesContainer)
+
+      input.value = '';
     }
 
-    const messageInfo = {
-      time: getCurrentTime(),
-      user: USER,
-      message: value,
+    function handleKeyPress (event) {
+      if (event.keyCode === 13) {
+        form.dispatchEvent(new Event('submit'));
+      }
+    }
+
+    window.onload = function() {
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
     };
 
-    addMessage(messageInfo);
-    messageHtml(messageInfo, messagesContainer)
-
-    input.value = '';
+    loadMessages(messagesContainer, id);
+    loadUserAvatar();
   }
-
-  function handleKeyPress (event) {
-    if (event.keyCode === 13) {
-      form.dispatchEvent(new Event('submit'));
-    }
-  }
-
-  window.onload = function() {
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  };
-
-  loadMessages(messagesContainer);
-  loadUserAvatar();
+  
+  saveMockData();
+  loadChats();
 })
