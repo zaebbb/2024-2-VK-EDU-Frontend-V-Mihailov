@@ -6,6 +6,7 @@ const AppProvider = ({ children }) => {
   const defaultState = {
     isMainPage: true,
     isChatPage: false,
+    currentChat: null,
   };
 
   const [state, setState] = React.useState(defaultState);

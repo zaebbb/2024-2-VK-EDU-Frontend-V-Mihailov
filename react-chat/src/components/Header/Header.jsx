@@ -12,11 +12,13 @@ export const Header = () => {
     isChatPage,
     isMainPage,
     setMainPage,
+    cleatCurrentChat,
   } = useStore();
 
   const backButtonHandler = React.useCallback(() => {
     setMainPage();
-  }, [setMainPage]);
+    cleatCurrentChat();
+  }, [cleatCurrentChat, setMainPage]);
 
   return (
     <div className={cls['header']}>

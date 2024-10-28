@@ -30,11 +30,28 @@ export const useStore = () => {
     }));
   };
 
+  const setCurrentChat = (chat) => {
+    setState(prevState => ({
+      ...prevState,
+      currentChat: chat,
+    }))
+  }
+
+  const cleatCurrentChat = () => {
+    setState(prevState => ({
+      ...prevState,
+      currentChat: null,
+    }))
+  }
+
   return {
     setMainPage,
     setChatPage,
+    setCurrentChat,
+    cleatCurrentChat,
 
     isMainPage: state.isMainPage,
     isChatPage: state.isChatPage,
+    currentChat: state.currentChat,
   };
 };
