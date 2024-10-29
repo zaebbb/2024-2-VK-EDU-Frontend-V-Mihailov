@@ -11,11 +11,14 @@ import { addMessage } from './components/addMessage';
 import { getCurrentTime } from './components/utils';
 import { messageHtml } from './components/messageHtml';
 import { loadChats } from './components/loadChats';
+import { loadUserInfo } from './components/loadUserInfo';
 import { saveMockData } from './components/saveMockData';
+import { newChat } from './components/newChat';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('form');
   const messagesContainer = document.querySelector('.chat-messages');
+  const newChatButton = document.querySelector('.add-message');
 
   if (form && messagesContainer) {
     const input = form.querySelector('.form__input');
@@ -27,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleSubmit (event) {
       event.preventDefault();
-      const value = input.value;
+      const value = input.value.trim();
 
       if (!value) {
         return;
@@ -56,7 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     loadMessages(messagesContainer, id);
+    loadUserInfo(id);
     loadUserAvatar();
+  }
+
+  if (newChatButton) {
+    newChatButton.addEventListener('click', newChat)
   }
   
   saveMockData();

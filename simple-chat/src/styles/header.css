@@ -24,6 +24,7 @@
   border: none;
   background: transparent;
   cursor: pointer;
+  text-decoration: none;
   transition: 0.3s color;
 }
 

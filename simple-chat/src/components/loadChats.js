@@ -7,10 +7,17 @@ export const loadChats = () => {
 
   if (chatsContainer) {
     users.forEach(user => {
-      const lastMessage = user.messages.at(-1);
+      let lastMessage = user.messages.at(-1);
       const chat = document.createElement('a');
       chat.setAttribute('href', `./chat.html?id=${user.id}`);
       chat.className = 'chat-user';
+
+      if (!lastMessage) {
+        lastMessage = {
+          time: '',
+          message: 'Новый чат',
+        };
+      }
 
       chat.innerHTML = `
         <img 
