@@ -1,5 +1,6 @@
 import React from 'react';
 import { AppContext } from '../store';
+import { getCurrentTime } from '../utils/getCurrentTime';
 
 export const useStore = () => {
   const { setState, state } = React.useContext(AppContext);
@@ -37,10 +38,29 @@ export const useStore = () => {
     }))
   }
 
-  const cleatCurrentChat = () => {
+  const clearCurrentChat = () => {
     setState(prevState => ({
       ...prevState,
       currentChat: null,
+    }))
+  }
+
+  const addMessage = (message) => {
+    const messageInfo = {
+      time: getCurrentTime(),
+      isUser: false,
+      message: message,
+    };
+    
+    setState(prevState => ({
+      ...prevState,
+      currentChat: {
+        ...prevState.currentChat,
+        messages: [
+          ...prevState.currentChat.messages,
+          messageInfo,
+        ],
+      }
     }))
   }
 
@@ -48,7 +68,8 @@ export const useStore = () => {
     setMainPage,
     setChatPage,
     setCurrentChat,
-    cleatCurrentChat,
+    clearCurrentChat,
+    addMessage,
 
     isMainPage: state.isMainPage,
     isChatPage: state.isChatPage,
