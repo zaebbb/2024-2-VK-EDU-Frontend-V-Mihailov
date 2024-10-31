@@ -3,7 +3,6 @@
   <head lang="en">
     <meta charset="UTF-8">
     <title>Send a message</title>
-    <meta name="viewport" content="width=device-width, user-scalable=no">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -12,11 +11,11 @@
     <main class="chat">
       <div class="header">
         <div class="header-info">
-          <button class="header__button">
+          <a href="./index.html" class="header__button">
             <span class="material-symbols-outlined">
               arrow_back_ios
             </span>
-          </button>
+          </a>
   
           <div class="header-profile">
             <img 
@@ -27,7 +26,7 @@
             >
   
             <div class="profile__content">
-              <h3 class="profile__name">
+              <h3 class="profile__name" id="profile-name">
                 Владимир Михайлов
               </h3>
               <span class="profile__date">
@@ -53,7 +52,7 @@
       </div>
 
       <div class="chat-messages">
-        <div class="message message--user show">
+        <div class="message">
           <p class="message__content">
             Сообщение
           </p>
@@ -62,7 +61,7 @@
           </span>
         </div>
 
-        <div class="message message--participant show">
+        <div class="message message--participant">
           <p class="message__content">
             Сообщение
           </p>

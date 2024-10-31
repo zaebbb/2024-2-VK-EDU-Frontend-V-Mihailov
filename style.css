@@ -55,10 +55,10 @@ body {
   border: none;
   background: transparent;
   cursor: pointer;
+  text-decoration: none;
   transition: 0.3s color;
 }
 
-.header__button:active,
 .header__button:hover {
   color: #fff;
 }
@@ -103,8 +103,6 @@ body {
   transition: 0.3s color;
 }
 
-.header-actions__search:active,
-.header-actions__menu:active,
 .header-actions__search:hover,
 .header-actions__menu:hover {
   color: #fff;
@@ -134,7 +132,6 @@ body {
 
   flex-grow: 1;
   overflow-y: auto;
-  overflow-x: hidden;
 
   display: flex;
   flex-direction: column;
@@ -197,28 +194,6 @@ body {
 .message--participant .message__time {
   text-align: left;
 }
-
-.message--user,
-.message--participant {
-  opacity: 0;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  visibility: hidden;
-}
-
-.message--user {
-  transform: translateX(100%) scale(0.5);
-}
-
-.message--participant {
-  transform: translateX(-100%) scale(0.5);
-}
-
-.message--user.show,
-.message--participant.show {
-  opacity: 1;
-  transform: translateX(0) scale(1);
-  visibility: visible;
-}
 .add-message {
   position: fixed;
   right: 30px;
@@ -228,7 +203,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  background: #1a66ff;
+  background: #1A66FF;
   color: #fff;
   border-radius: 50%;
   font-size: 24px;
@@ -243,33 +218,6 @@ body {
 
 .add-message:hover {
   transform: translateY(-5px);
-  animation: pulse 1.5s infinite;
-}
-
-@-webkit-keyframes pulse {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(26, 102, 255, 0.4);
-  }
-  70% {
-      -webkit-box-shadow: 0 0 0 20px rgba(26, 102, 255, 0);
-  }
-  100% {
-      -webkit-box-shadow: 0 0 0 0 rgba(26, 102, 255, 0);
-  }
-}
-@keyframes pulse {
-  0% {
-    -moz-box-shadow: 0 0 0 0 rgba(26, 102, 255, 0.4);
-    box-shadow: 0 0 0 0 rgba(26, 102, 255, 0.4);
-  }
-  70% {
-      -moz-box-shadow: 0 0 0 20px rgba(26, 102, 255, 0);
-      box-shadow: 0 0 0 20px rgba(26, 102, 255, 0);
-  }
-  100% {
-      -moz-box-shadow: 0 0 0 0 rgba(26, 102, 255, 0);
-      box-shadow: 0 0 0 0 rgba(26, 102, 255, 0);
-  }
 }
 
 .chat-user {
@@ -285,7 +233,6 @@ body {
   transition: background 0.2s;
 }
 
-.chat-user:active,
 .chat-user:hover {
   background: #2e2e2e;
 }
