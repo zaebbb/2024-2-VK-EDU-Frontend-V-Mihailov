@@ -1,9 +1,7 @@
-import { USER } from './constants'
-
 const messageTemplate = (messageInfo) => {
   const messageElement = document.createElement('div');
   messageElement.classList.add('message');
-  messageElement.classList.add(messageInfo.user !== USER ? 'message--participant' : 'message--user');
+  messageElement.classList.add(messageInfo.isUser ? 'message--participant' : 'message--user');
   
   messageElement.innerHTML = `
     <p class="message__content">
