@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat'), url(./assets/fonts/Montserrat-VariableFont_wght.ttf) format('ttf');
+}
 
 *,
 *::before,
@@ -18,14 +21,4 @@ body {
 .chat-page {
   height: 100vh;
   overflow: hidden;
-}
-
-.chat-list,
-.chat {
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-
-  height: 100%;
 }

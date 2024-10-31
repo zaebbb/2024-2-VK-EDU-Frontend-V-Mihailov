@@ -1,96 +1,72 @@
 import './index.css';
-import Avatar from './images/user.png';
+import './styles/header.css';
+import './styles/chat-form.css';
+import './styles/chat.css';
+import './styles/add-message.css';
+import './styles/chats-list.css';
 
-const LOCAL_STORAGE_KEY = 'messages';
-const USER = 'Владимир Михайлов';
+import { loadUserAvatar } from './components/avatar';
+import { loadMessages } from './components/loadMessages';
+import { addMessage } from './components/addMessage';
+import { getCurrentTime } from './components/utils';
+import { messageHtml } from './components/messageHtml';
+import { loadChats } from './components/loadChats';
+import { loadUserInfo } from './components/loadUserInfo';
+import { saveMockData } from './components/saveMockData';
+import { newChat } from './components/newChat';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('form');
-  const input = form.querySelector('.form__input');
   const messagesContainer = document.querySelector('.chat-messages');
-  
-  document.getElementById('user-avatar').setAttribute('src', Avatar);
+  const newChatButton = document.querySelector('.add-message');
 
-  form.addEventListener('submit', handleSubmit.bind(this));
-  form.addEventListener('keypress', handleKeyPress.bind(this));
+  if (form && messagesContainer) {
+    const input = form.querySelector('.form__input');
+    const url = new URLSearchParams(window.location.search);
+    const id = url.get('id')
 
-  function handleSubmit (event) {
-    event.preventDefault();
-    const value = input.value;
+    form.addEventListener('submit', handleSubmit.bind(this));
+    form.addEventListener('keypress', handleKeyPress.bind(this));
 
-    if (!value) {
-      return;
+    function handleSubmit (event) {
+      event.preventDefault();
+      const value = input.value.trim();
+
+      if (!value) {
+        return;
+      }
+
+      const messageInfo = {
+        time: getCurrentTime(),
+        isUser: false,
+        message: value,
+      };
+
+      addMessage(messageInfo, id);
+      messageHtml(messageInfo, messagesContainer)
+
+      input.value = '';
     }
 
-    const messageInfo = {
-      time: getCurrentTime(),
-      user: USER,
-      message: value,
+    function handleKeyPress (event) {
+      if (event.keyCode === 13) {
+        form.dispatchEvent(new Event('submit'));
+      }
+    }
+
+    window.onload = function() {
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
     };
 
-    addMessage(messageInfo);
-    messageHtml(messageInfo)
-
-    input.value = '';
+    loadMessages(messagesContainer, id);
+    loadUserInfo(id);
+    loadUserAvatar();
   }
 
-  function handleKeyPress (event) {
-    if (event.keyCode === 13) {
-      form.dispatchEvent(new Event('submit'));
-    }
+  if (newChatButton) {
+    newChatButton.addEventListener('click', newChat)
   }
-
-  function addMessage (messageInfo) {
-    if (!localStorage.getItem(LOCAL_STORAGE_KEY)) {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify([]));
-    }
-
-    const messages = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-
-    messages.push(messageInfo);
-
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(messages));
-  }
-
-  function getCurrentTime () {
-    const date = new Date();
-
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-
-    return `${hours}:${minutes}`;
-  }
-
-  function loadMessages () {
-    const messagesLocalStorage = localStorage.getItem(LOCAL_STORAGE_KEY);
-    const messages = messagesLocalStorage ? JSON.parse(messagesLocalStorage) : [];
-
-    messages.forEach(messageHtml);
-  }
-
-  function messageTemplate (messageInfo) {
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message');
-    
-    messageElement.innerHTML = `
-      <p class="message__content ${messageInfo.user !== USER ? 'message--participant' : ''}">
-        ${messageInfo.message}
-      </p>
-      <span class="message__time">${messageInfo.time}</span>
-    `;
-    
-    return messageElement;
-  }
-
-  function messageHtml (messageInfo) {
-    const messageElement = messageTemplate(messageInfo)
-    messagesContainer.appendChild(messageElement);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  }
-
-  window.onload = function() {
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  };
-
-  loadMessages();
+  
+  saveMockData();
+  loadChats();
 })
