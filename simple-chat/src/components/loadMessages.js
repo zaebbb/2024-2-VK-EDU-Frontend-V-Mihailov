@@ -1,11 +1,8 @@
-import { LOCAL_STORAGE_KEY } from './constants'
+import { getUserInfo } from './getUserInfo';
 import { messageHtml } from './messageHtml'
 
 export const loadMessages = (messageContainer, id) => {
-  const usersLocalStorage = localStorage.getItem(LOCAL_STORAGE_KEY);
-  const users = usersLocalStorage ? JSON.parse(usersLocalStorage) : [];
-
-  const user = users.find(user => Number(user.id) === Number(id));
+  const user = getUserInfo(id);
 
   if (user) {
     const messages = user.messages;
