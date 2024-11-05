@@ -1,8 +1,7 @@
-import { USER } from './constants'
-
 const messageTemplate = (messageInfo) => {
   const messageElement = document.createElement('div');
-  messageElement.className = `message ${messageInfo.isUser ? 'message--participant' : ''}`;
+  messageElement.classList.add('message');
+  messageElement.classList.add(messageInfo.isUser ? 'message--participant' : 'message--user');
   
   messageElement.innerHTML = `
     <p class="message__content">
@@ -21,4 +20,8 @@ export const messageHtml = (
   const messageElement = messageTemplate(messageInfo)
   messagesContainer.appendChild(messageElement);
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+  requestAnimationFrame(() => {
+    messageElement.classList.add('show');
+  })
 }

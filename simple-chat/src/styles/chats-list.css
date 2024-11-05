@@ -11,6 +11,7 @@
   transition: background 0.2s;
 }
 
+.chat-user:active,
 .chat-user:hover {
   background: #2e2e2e;
 }
