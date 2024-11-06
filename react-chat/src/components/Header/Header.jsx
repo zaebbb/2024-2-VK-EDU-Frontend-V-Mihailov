@@ -3,31 +3,49 @@ import { useStore } from '../../hooks/useStore';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import CheckIcon from '@mui/icons-material/Check';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import cls from './Header.module.scss';
 import UserAvatar from '../../assets/images/user.png';
+import { Link } from 'react-router-dom';
+import { getUserInfo } from '../../lib/getUserInfo';
 
 export const Header = () => {
   const { 
     isChatPage,
     isMainPage,
-    setMainPage,
+    isProfilePage,
+    chatId,
   } = useStore();
 
-  const backButtonHandler = React.useCallback(() => {
-    setMainPage();
-  }, [setMainPage]);
+  const [chat, setChat] = React.useState(null);
+
+  React.useEffect(() => {
+    if (!chat && chatId && isChatPage) {
+      const chatInfo = getUserInfo(chatId);
+
+      if (chatInfo) {
+        setChat(chatInfo);
+      }
+    }
+  }, [chat, chatId, isChatPage]);
+
+  React.useEffect(() => {
+    if (isMainPage) {
+      setChat(null);
+    }
+  }, [isMainPage]);
 
   return (
     <div className={cls['header']}>
       <div className={cls['header-info']}>
-        {isChatPage && (
-          <button 
+        {(isChatPage || isProfilePage) && (
+          <Link 
             className={cls['header__button']}
-            onClick={backButtonHandler}
+            to={"/"}
           >
             <ArrowBackIosIcon />
-          </button>
+          </Link>
         )}
         
         {isMainPage && (
@@ -45,8 +63,14 @@ export const Header = () => {
               Messenger
             </p>
           )}
+
+          {isProfilePage && (
+            <p className={cls['header__title']}>
+              Редактор профиля
+            </p>
+          )}
           
-          {isChatPage && (
+          {Boolean(chat && isChatPage) && (
             <>
               <img 
                 src={UserAvatar} 
@@ -56,10 +80,10 @@ export const Header = () => {
 
               <div className={cls['profile__content']}>
                 <h3 className={cls['profile__name']}>
-                  Владимир Михайлов
+                  {chat.name}
                 </h3>
                 <span className={cls['profile__date']}>
-                  был в сети в 11.40
+                  был в сети в {chat.timeOnline}
                 </span>
               </div>
             </>
@@ -68,13 +92,21 @@ export const Header = () => {
       </div>
       
       <div className={cls['header-actions']}>
-        <button className={cls['header-actions__button']}>
-          <SearchIcon />
-        </button>
+        {Boolean(isChatPage || isMainPage) && (
+          <button className={cls['header-actions__button']}>
+            <SearchIcon />
+          </button>
+        )}
 
         {isChatPage && (
           <button className={cls['header-actions__button']}>
             <MoreVertIcon />
+          </button>
+        )}
+
+        {isProfilePage && (
+          <button className={cls['header-actions__button']}>
+            <CheckIcon />
           </button>
         )}
       </div>

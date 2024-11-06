@@ -1,0 +1,113 @@
+.profile {
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  &-field {
+    position: relative;
+    max-width: 400px;
+
+    &--file {
+      max-width: 80px;
+      height: 80px;
+      width: 100%;
+
+      overflow: hidden;
+
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    &__icon {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 24px;
+
+      z-index: 5;
+    }
+
+    &__label {
+      margin-bottom: 5px;
+
+      font-size: 14px;
+      color: #a2acb4;
+    }
+
+    &__file {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      opacity: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    &__image {
+      width: 100%;
+      height: 100%;
+
+      border-radius: 50%;
+      object-fit: cover;
+
+      
+    }
+
+    &__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+
+      background: rgba(0, 0, 0, 0.5);
+
+      z-index: 2;
+    }
+
+    &__input {
+      padding: 0 15px;
+
+      width: 100%;
+      height: 40px;
+
+      border: none;
+      background: #212121;
+      outline: none;
+      border-radius: 15px;
+      color: #fff;
+  
+      &::placeholder {
+        color: #a2acb4;
+      }
+    }
+
+    &__textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    &__description {
+      font-size: 12px;
+      color: #a2acb4;
+    }
+  }
+}

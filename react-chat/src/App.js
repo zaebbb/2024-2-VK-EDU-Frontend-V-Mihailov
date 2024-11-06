@@ -2,30 +2,47 @@ import React from 'react';
 import { useStore } from './hooks/useStore';
 import cls from './App.module.scss';
 import { Header } from './components/Header/Header';
-import { AddChatButton } from './components/AddChatButton/AddChatButton';
+import { saveMockData } from './mock/saveMockData';
+import { classNames } from './utils/classNames';
+import { HashRouter, Route, Routes } from "react-router-dom";
+import { MainPage } from './pages/MainPage';
+import { ChatPage } from './pages/ChatPage';
+import { ProfilePage } from './pages/ProfilePage';
 
 function App() {
   const { 
     isChatPage,
-    isMainPage, 
   } = useStore();
 
+  const mods = {
+    [cls['chat-page']]: isChatPage,
+  };
+
   React.useEffect(() => {
-    if (isChatPage) {
-      document.body.classList.add('chat-page');
-    } else {
-      document.body.classList.remove('chat-page');
-    }
-  }, [isChatPage])
+    saveMockData();
+  }, []);
 
   return (
-    <main className={cls['chat']}>
-      <Header />
+    <HashRouter>
+      <main className={classNames(cls['chat'], mods, [])}>
+        <Header />
 
-      {isMainPage && (
-        <AddChatButton />
-      )}
-    </main>
+        <Routes>
+          <Route 
+            path="/"
+            element={<MainPage />}
+          />
+          <Route 
+            path="/chat/:id"
+            element={<ChatPage />}
+          />
+          <Route 
+            path="/profile"
+            element={<ProfilePage />}
+          />
+        </Routes>
+      </main>
+    </HashRouter>
   );
 }
 

@@ -9,6 +9,7 @@ export const useStore = () => {
       ...prevState,
       isMainPage: false,
       isChatPage: false,
+      isProfilePage: false,
     }));
   };
 
@@ -30,11 +31,48 @@ export const useStore = () => {
     }));
   };
 
+  const setProfilePage = () => {
+    clearPages();
+
+    setState(prevState => ({
+      ...prevState,
+      isProfilePage: true,
+    }));
+  };
+
+  const setChatId = (chatId) => {
+    setState(prevState => ({
+      ...prevState,
+      chatId,
+    }));
+  }
+
+  const clearChatId = () => {
+    setState(prevState => ({
+      ...prevState,
+      chatId: null,
+    }));
+  }
+
+  const reloadMessages = (value) => {
+    setState(prevState => ({
+      ...prevState,
+      isReloadMessages: value,
+    }));
+  }
+
   return {
     setMainPage,
     setChatPage,
+    setProfilePage,
+    reloadMessages,
+    setChatId,
+    clearChatId,
 
     isMainPage: state.isMainPage,
     isChatPage: state.isChatPage,
+    isProfilePage: state.isProfilePage,
+    chatId: state.chatId,
+    isReloadMessages: state.isReloadMessages,
   };
 };
