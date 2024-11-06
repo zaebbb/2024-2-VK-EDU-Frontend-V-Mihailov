@@ -2,32 +2,22 @@ import React from 'react';
 import cls from './MessagePreview.module.scss';
 import AvatarDefault from '../../assets/images/user.png';
 import { classNames } from '../../utils/classNames';
-import { useStore } from '../../hooks/useStore';
+import { Link } from 'react-router-dom';
 
 export const MessagePreview = (props) => {
   const {
     chatInfo,
   } = props;
 
-  const { 
-    setChatPage,
-    setCurrentChat, 
-  } = useStore();
-
   const lastMessage = chatInfo.messages.at(-1);
   const messageStatusClassName = {
     [cls['chat-user-properties__status--new-message']]: true,
   };
 
-  const viewChatHandler = React.useCallback(() => {
-    setCurrentChat(chatInfo);
-    setChatPage();
-  }, [chatInfo, setChatPage, setCurrentChat]);
-
   return (
-    <div 
+    <Link 
       className={cls['chat-user']}
-      onClick={viewChatHandler}
+      to={`/chat/${chatInfo.id}`}
     >
       <img 
         src={chatInfo.avatar ?? AvatarDefault} 
@@ -58,6 +48,6 @@ export const MessagePreview = (props) => {
           </span>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }

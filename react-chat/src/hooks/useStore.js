@@ -1,6 +1,5 @@
 import React from 'react';
 import { AppContext } from '../store';
-import { getCurrentTime } from '../utils/getCurrentTime';
 
 export const useStore = () => {
   const { setState, state } = React.useContext(AppContext);
@@ -10,6 +9,7 @@ export const useStore = () => {
       ...prevState,
       isMainPage: false,
       isChatPage: false,
+      isProfilePage: false,
     }));
   };
 
@@ -31,48 +31,48 @@ export const useStore = () => {
     }));
   };
 
-  const setCurrentChat = (chat) => {
+  const setProfilePage = () => {
+    clearPages();
+
     setState(prevState => ({
       ...prevState,
-      currentChat: chat,
-    }))
+      isProfilePage: true,
+    }));
+  };
+
+  const setChatId = (chatId) => {
+    setState(prevState => ({
+      ...prevState,
+      chatId,
+    }));
   }
 
-  const clearCurrentChat = () => {
+  const clearChatId = () => {
     setState(prevState => ({
       ...prevState,
-      currentChat: null,
-    }))
+      chatId: null,
+    }));
   }
 
-  const addMessage = (message) => {
-    const messageInfo = {
-      time: getCurrentTime(),
-      isUser: false,
-      message: message,
-    };
-    
+  const reloadMessages = (value) => {
     setState(prevState => ({
       ...prevState,
-      currentChat: {
-        ...prevState.currentChat,
-        messages: [
-          ...prevState.currentChat.messages,
-          messageInfo,
-        ],
-      }
-    }))
+      isReloadMessages: value,
+    }));
   }
 
   return {
     setMainPage,
     setChatPage,
-    setCurrentChat,
-    clearCurrentChat,
-    addMessage,
+    setProfilePage,
+    reloadMessages,
+    setChatId,
+    clearChatId,
 
     isMainPage: state.isMainPage,
     isChatPage: state.isChatPage,
-    currentChat: state.currentChat,
+    isProfilePage: state.isProfilePage,
+    chatId: state.chatId,
+    isReloadMessages: state.isReloadMessages,
   };
 };

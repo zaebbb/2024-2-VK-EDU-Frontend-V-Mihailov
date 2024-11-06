@@ -6,7 +6,9 @@ const AppProvider = ({ children }) => {
   const defaultState = {
     isMainPage: true,
     isChatPage: false,
-    currentChat: null,
+    isProfilePage: false,
+    chatId: null,
+    isReloadMessages: false,
   };
 
   const [state, setState] = React.useState(defaultState);
