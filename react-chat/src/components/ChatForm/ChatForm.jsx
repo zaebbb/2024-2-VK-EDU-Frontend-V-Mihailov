@@ -1,4 +1,5 @@
 import React from 'react';
+import SendIcon from '@mui/icons-material/Send';
 import cls from './ChatForm.module.scss';
 import { saveMessage } from '../../lib/saveMessage';
 import { useStore } from '../../hooks/useStore';
@@ -34,6 +35,13 @@ export const ChatForm = () => {
         value={value}
         onChange={onChangeHandler}
       />
+
+      <button
+        type="submit"
+        className={cls['chat-form__button']}
+      >
+        <SendIcon /> 
+      </button>
     </form>
   )
 }

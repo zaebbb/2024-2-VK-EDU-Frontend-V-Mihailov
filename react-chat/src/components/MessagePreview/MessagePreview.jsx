@@ -42,13 +42,13 @@ export const MessagePreview = (props) => {
           </h3>
 
           <p className={cls['chat-user-message__text']}>
-            {lastMessage.message ?? ''}
+            {lastMessage ? lastMessage.message : ''}
           </p>
         </div>
 
         <div className={cls['chat-user-properties']}>
           <span className={cls['chat-user-properties__time']}>
-            {lastMessage.time ?? ''}
+            {lastMessage ? lastMessage.time : ''}
           </span>
 
           <span 
