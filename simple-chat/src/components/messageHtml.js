@@ -1,8 +1,7 @@
 const messageTemplate = (messageInfo) => {
   const messageElement = document.createElement('div');
-  messageElement.classList.add('message');
-  messageElement.classList.add(messageInfo.isUser ? 'message--participant' : 'message--user');
-  
+  messageElement.className = `message ${messageInfo.isUser ? 'message--participant' : ''}`;
+
   messageElement.innerHTML = `
     <p class="message__content">
       ${messageInfo.message}
