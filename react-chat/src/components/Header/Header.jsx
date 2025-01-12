@@ -12,11 +12,14 @@ export const Header = () => {
     isChatPage,
     isMainPage,
     setMainPage,
+    clearCurrentChat,
+    currentChat,
   } = useStore();
 
   const backButtonHandler = React.useCallback(() => {
     setMainPage();
-  }, [setMainPage]);
+    clearCurrentChat();
+  }, [clearCurrentChat, setMainPage]);
 
   return (
     <div className={cls['header']}>
@@ -56,10 +59,10 @@ export const Header = () => {
 
               <div className={cls['profile__content']}>
                 <h3 className={cls['profile__name']}>
-                  Владимир Михайлов
+                  {currentChat.name}
                 </h3>
                 <span className={cls['profile__date']}>
-                  был в сети в 11.40
+                  был в сети в {currentChat.timeOnline}
                 </span>
               </div>
             </>

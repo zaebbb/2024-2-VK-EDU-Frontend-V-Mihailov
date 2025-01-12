@@ -18,7 +18,16 @@ body {
   font-size: 15px;
 }
 
-.chat-page {
-  height: 100vh;
-  overflow: hidden;
+::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 30px;
+	background-color: #212121;
 }

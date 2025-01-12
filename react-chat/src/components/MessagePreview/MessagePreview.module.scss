@@ -1,0 +1,126 @@
+.chat-user {
+  padding: 10px 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  transition: background 0.2s;
+
+  &:active,
+  &:hover {
+    background: #2e2e2e;
+  }
+
+  &__avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  &-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    width: 100%;
+    
+    color: #fff;
+  }
+
+  &-message {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    &__username {
+      color: #fff;
+    }
+
+    &__file {
+      width: 20px;
+    }
+
+    &__text {
+      display: block;
+    
+      width: 100%;
+      max-width: 800px;
+    
+      font-size: 14px;
+      color: #a2acb4; 
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      @media (max-width: 1000px) {
+        max-width: 600px;
+      }
+      
+      @media (max-width: 800px) {
+        max-width: 400px;
+      }
+      
+      @media (max-width: 600px) {
+        max-width: 200px;
+      }
+
+      &--file {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 5px;
+      }
+    }
+  }
+
+  &-properties {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+
+    &__time {
+      color: #a2acb4;
+      font-size: 14px;
+    }
+
+    &__status {
+      font-size: 14px;
+      color: #a2acb4;
+
+      &--read {
+        color: #1A66FF;
+      }
+
+      &--new-message {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      
+        width: 30px;
+        height: 30px;
+      
+        background: #1A66FF;
+        color: #fff;
+        border-radius: 50%;
+      }
+
+      &--mention {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+      
+        width: 60px;
+        height: 30px;
+      
+        background: #1A66FF;
+        color: #fff;
+        border-radius: 30px;
+      }
+    }
+  }
+}
