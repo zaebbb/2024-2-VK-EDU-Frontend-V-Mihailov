@@ -4,26 +4,29 @@ import cls from './ChatForm.module.scss';
 import { saveMessage } from '../../lib/saveMessage';
 import { useStore } from '../../hooks/useStore';
 
-export const ChatForm = () => {
+export const ChatForm = (props) => {
   const {
-    currentChat,
-    addMessage,
+    chatId,
+  } = props;
+  
+  const {
+    reloadMessages,
   } = useStore();
   const [value, setValue] = React.useState('');
 
   const onChangeHandler = React.useCallback((e) => {
-    setValue(e.target.value.trim());
+    setValue(e.target.value);
   }, [])
 
   const onSubmit = React.useCallback((e) => {
     e.preventDefault();
 
     if (value) {
-      saveMessage(currentChat.id, value);
-      addMessage(value);
+      saveMessage(chatId, value);
+      reloadMessages(true);
       setValue('');
     }
-  }, [addMessage, currentChat.id, value]);
+  }, [chatId, reloadMessages, value]);
 
   return (
     <form className={cls['chat-form']} action="/" onSubmit={onSubmit}>

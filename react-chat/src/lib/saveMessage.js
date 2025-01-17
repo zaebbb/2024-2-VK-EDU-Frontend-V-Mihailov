@@ -2,6 +2,10 @@ import { LOCAL_STORAGE_KEY } from "../utils/constants";
 import { getCurrentTime } from "../utils/getCurrentTime";
 
 export const saveMessage = (userId, message) => {
+  if (!message.trim()) {
+    return;
+  }
+
   const messageInfo = {
     time: getCurrentTime(),
     isUser: false,

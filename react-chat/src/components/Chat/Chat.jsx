@@ -1,33 +1,34 @@
 import React from 'react';
 import cls from './Chat.module.scss';
-import { useStore } from '../../hooks/useStore';
 import { Message } from '../Message/Message';
 
-export const Chat = () => {
-  const { currentChat } = useStore();
+export const Chat = (props) => {
+  const { 
+    chat,
+   } = props;
   const containerRef = React.useRef();
 
   const isMessagesLength = React.useMemo(() => {
-    if (!currentChat) {
+    if (!chat) {
       return false;
     }
     
-    return Boolean(currentChat.messages.length);
-  }, [currentChat])
+    return Boolean(chat.messages.length);
+  }, [chat]);
 
   React.useEffect(() => {
-    if (currentChat && containerRef.current) {
+    if (chat && containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
-  }, [currentChat]);
+  }, [chat]);
 
-  if (!currentChat) {
+  if (!chat) {
     return null;
   }
 
   return (
     <div className={cls['chat-messages']} ref={containerRef}>
-      {isMessagesLength && currentChat.messages.map(message => (
+      {isMessagesLength && chat.messages.map(message => (
         <Message 
           key={`${message.message}${message.time}`}
           message={message}
